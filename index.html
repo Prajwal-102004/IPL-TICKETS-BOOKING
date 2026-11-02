@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Cricket Ticket Reservation</title>
+</head>
+
+<body>
+
+    <center>
+        <h1>🏏 IPL 2026 CRICKET ARENA</h1>
+        <h3>Book Your Match Tickets Online</h3>
+    </center>
+
+    <hr>
+
+    <h2>Home</h2>
+    <p>Welcome to IPL 2026! Select your favourite team and enjoy
+       the excitement of live cricket matches.</p>
+
+    <img src="ipl.jpg" width="400" alt="IPL Cricket">
+
+    <hr>
+
+    <h2>Available Matches</h2>
+
+    <form>
+        <label>Select Your Favourite Match:</label>
+
+        <select id="match">
+            <option value="">Select a match</option>
+            <option>RCB vs CSK</option>
+            <option>MI vs KKR</option>
+            <option>SRH vs DC</option>
+            <option>RR vs PBKS</option>
+            <option>CSK vs MI</option>
+        </select>
+
+        <button type="button" onclick="displayMatch()">
+            View Match
+        </button>
+    </form>
+
+    <p id="result"></p>
+
+    <hr>
+
+    <h2>IPL Match Timetable</h2>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Teams</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Stadium</th>
+        </tr>
+
+        <tr>
+            <td>RCB vs CSK</td>
+            <td>May 10, 2026</td>
+            <td>7:30 PM</td>
+            <td>Bengaluru</td>
+        </tr>
+
+        <tr>
+            <td>MI vs KKR</td>
+            <td>May 12, 2026</td>
+            <td>7:30 PM</td>
+            <td>Mumbai</td>
+        </tr>
+
+        <tr>
+            <td>SRH vs DC</td>
+            <td>May 14, 2026</td>
+            <td>7:30 PM</td>
+            <td>Hyderabad</td>
+        </tr>
+
+        <tr>
+            <td>RR vs PBKS</td>
+            <td>May 16, 2026</td>
+            <td>3:30 PM</td>
+            <td>Jaipur</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2>Ticket Reservation Form</h2>
+
+    <form onsubmit="bookTicket(event)">
+
+        <label>Enter Your Name:</label>
+        <input type="text" id="username" required>
+
+        <br><br>
+
+        <label>Enter Mobile Number:</label>
+        <input type="tel" id="mobile" pattern="[0-9]{10}" required>
+
+        <br><br>
+
+        <label>Choose Match:</label>
+        <select id="bookingMatch" required>
+            <option value="">Choose Match</option>
+            <option>RCB vs CSK</option>
+            <option>MI vs KKR</option>
+            <option>SRH vs DC</option>
+            <option>RR vs PBKS</option>
+            <option>CSK vs MI</option>
+        </select>
+
+        <br><br>
+
+        <label>Ticket Quantity:</label>
+        <input type="number" id="count" min="1" max="5" required>
+
+        <br><br>
+
+        <label>Ticket Category:</label>
+        <select id="type">
+            <option value="1000">Regular - ₹1000</option>
+            <option value="2000">Premium - ₹2000</option>
+            <option value="3500">VIP - ₹3500</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Confirm Booking</button>
+
+    </form>
+
+    <p id="confirmation"></p>
+
+    <hr>
+
+    <h2>Stadium Rules</h2>
+
+    <ul>
+        <li>Bring your valid ticket.</li>
+        <li>Carry an identity card.</li>
+        <li>Reach the stadium early.</li>
+        <li>Do not carry prohibited objects.</li>
+        <li>Follow stadium security instructions.</li>
+    </ul>
+
+    <hr>
+
+    <center>
+        <h3>Thank You for Choosing IPL Arena!</h3>
+        <p>© 2026 IPL Ticket Reservation System</p>
+    </center>
+
+    <script>
+
+        function displayMatch() {
+            let match = document.getElementById("match").value;
+
+            if (match == "") {
+                alert("Please select a match");
+            } else {
+                document.getElementById("result").innerHTML =
+                    "You selected: " + match;
+            }
+        }
+
+        function bookTicket(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("username").value;
+            let match = document.getElementById("bookingMatch").value;
+            let count = Number(document.getElementById("count").value);
+            let price = Number(document.getElementById("type").value);
+
+            let total = count * price;
+
+            document.getElementById("confirmation").innerHTML =
+                "<h3>Booking Request Successful!</h3>" +
+                "Name: " + name + "<br>" +
+                "Match: " + match + "<br>" +
+                "Tickets: " + count + "<br>" +
+                "Total Amount: ₹" + total +
+                "<br><b>Demo only – no actual tickets reserved.</b>";
+        }
+
+    </script>
+
+</body>
+</html>
