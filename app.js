@@ -1,7 +1,4 @@
-
-// Reusable Toast Notification Function
-
-let toastTimer;
+    let toastTimer;
 
 function showToast(message) {
 
@@ -25,7 +22,6 @@ function showToast(message) {
 }
 
 
-// Run after the HTML page loads
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -52,8 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // Book Tickets - Smooth Scrolling
-
     if (window.location.hash == "#bookingHeading") {
 
         let heading = document.getElementById("bookingHeading");
@@ -68,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    // Booking Form Submission
+
 
     let bookingForm = document.getElementById("bookingForm");
 
@@ -100,15 +94,45 @@ document.addEventListener("DOMContentLoaded", function() {
             showToast("Booking submitted successfully!");
 
         });
-
-        // Reset Button
-
-        bookingForm.addEventListener("reset", function() {
+            bookingForm.addEventListener("reset", function() {
             document.getElementById("confirmation").innerHTML = "";
             showToast("Form has been reset!");
         });
+        let matchSelect = document.getElementById("bookingMatch");
+        let standSelect = document.getElementById("type");
+        let quantityInput = document.getElementById("count");
+
+        function updateBookingSummary() {
+
+            let match = matchSelect.value;
+            let stand = standSelect.value;
+            let quantity = Number(quantityInput.value);
+
+            let price = Number(stand);
+            let total = price * quantity;
+
+            let standName = standSelect.options[standSelect.selectedIndex].text;
+
+            document.getElementById("summaryMatch").innerText =
+                match || "Not selected";
+
+            document.getElementById("summaryStand").innerText =
+                stand ? standName : "Not selected";
+
+            document.getElementById("summaryQuantity").innerText =
+                quantity || 0;
+
+            document.getElementById("summaryTotal").innerText =
+                total || 0;
+
+            showToast("Booking summary updated!");
+        }
+
+        matchSelect.addEventListener("change", updateBookingSummary);
+        standSelect.addEventListener("change", updateBookingSummary);
+        quantityInput.addEventListener("change", updateBookingSummary);
+
 
     }
 
 });
-    
