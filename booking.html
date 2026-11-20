@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<center>
+    <h1>🏏 IPL 2026 TICKET BOOKING</h1>
+    <h3>Book Your Match Tickets Online</h3>
+</center>
+
+<hr>
+
+<h2>Ticket Reservation Form</h2>
+
+<form onsubmit="bookTicket(event)">
+
+    <label>Enter Your Name:</label><br>
+    <input type="text" id="username"
+           placeholder="Enter your name"
+           minlength="3" maxlength="30" required>
+
+    <br><br>
+
+    <label>Enter Email:</label><br>
+    <input type="email" id="email"
+           placeholder="Enter your email" required>
+
+    <br><br>
+
+    <label>Enter Mobile Number:</label><br>
+    <input type="tel" id="mobile"
+           placeholder="10 digit mobile number"
+           pattern="[0-9]{10}"
+           maxlength="10" required>
+
+    <br><br>
+
+    <label>Choose Match:</label><br>
+    <select id="bookingMatch" required>
+        <option value="">Select Match</option>
+        <option>RCB vs CSK</option>
+        <option>MI vs KKR</option>
+        <option>SRH vs DC</option>
+        <option>RR vs PBKS</option>
+        <option>CSK vs MI</option>
+    </select>
+
+    <br><br>
+
+    <label>Ticket Quantity:</label><br>
+    <input type="number" id="count"
+           min="1" max="5" required>
+
+    <br><br>
+
+    <label>Ticket Category:</label><br>
+    <select id="type" required>
+        <option value="">Select Category</option>
+        <option value="1000">Regular - ₹1000</option>
+        <option value="2000">Premium - ₹2000</option>
+        <option value="3500">VIP - ₹3500</option>
+    </select>
+
+    <br><br>
+
+    <label>Seating Preference:</label><br>
+
+    <input type="radio" name="preference" value="Indoor">
+    Indoor
+
+    <input type="radio" name="preference" value="Outdoor">
+    Outdoor
+
+    <br><br>
+
+    <input type="checkbox" required>
+    I agree to the terms and conditions.
+
+    <br><br>
+
+    <button type="submit">Confirm Booking</button>
+    <button type="reset">Reset</button>
+
+</form>
+
+<p id="confirmation"></p>
+
+<script>
+
+function bookTicket(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let match = document.getElementById("bookingMatch").value;
+    let count = Number(document.getElementById("count").value);
+    let price = Number(document.getElementById("type").value);
+
+    let total = count * price;
+
+    document.getElementById("confirmation").innerHTML =
+        "<h3>Booking Successful!</h3>" +
+        "Name: " + name + "<br>" +
+        "Email: " + email + "<br>" +
+        "Mobile: " + mobile + "<br>" +
+        "Match: " + match + "<br>" +
+        "Tickets: " + count + "<br>" +
+        "Total Amount: ₹" + total +
+        "<br><b>Demo only - No actual tickets reserved.</b>";
+}
+
+</script>
+
+</body>
+</html>
