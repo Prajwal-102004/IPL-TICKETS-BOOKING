@@ -3,6 +3,7 @@
 <head>
     <title>IPL Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 
 <body>
@@ -14,9 +15,9 @@
 
 <hr>
 
-<h2>Ticket Reservation Form</h2>
+<h2 id="bookingHeading">Ticket Reservation Form</h2>
 
-<form onsubmit="bookTicket(event)">
+<form id="bookingForm">
 
     <label>Enter Your Name:</label><br>
     <input type="text" id="username"
@@ -89,33 +90,20 @@
 
 <p id="confirmation"></p>
 
-<script>
+<div class="summary-card">
 
-function bookTicket(event) {
+    <h2>Booking Summary</h2>
 
-    event.preventDefault();
+    <p>Selected Match: <span id="summaryMatch">Not selected</span></p>
 
-    let name = document.getElementById("username").value;
-    let email = document.getElementById("email").value;
-    let mobile = document.getElementById("mobile").value;
-    let match = document.getElementById("bookingMatch").value;
-    let count = Number(document.getElementById("count").value);
-    let price = Number(document.getElementById("type").value);
+    <p>Stand Category: <span id="summaryStand">Not selected</span></p>
 
-    let total = count * price;
+    <p>Ticket Quantity: <span id="summaryQuantity">0</span></p>
 
-    document.getElementById("confirmation").innerHTML =
-        "<h3>Booking Successful!</h3>" +
-        "Name: " + name + "<br>" +
-        "Email: " + email + "<br>" +
-        "Mobile: " + mobile + "<br>" +
-        "Match: " + match + "<br>" +
-        "Tickets: " + count + "<br>" +
-        "Total Amount: ₹" + total +
-        "<br><b>Demo only - No actual tickets reserved.</b>";
-}
+    <h3>Total Price: ₹<span id="summaryTotal">0</span></h3>
 
-</script>
+</div>
+
 
 </body>
 </html>
