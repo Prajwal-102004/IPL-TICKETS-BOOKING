@@ -39,9 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
-
-    // Activity 8: Team Filter
-
     let teamFilter = document.getElementById("teamFilter");
     let matchCards = document.querySelectorAll(".match-card");
 
@@ -183,9 +180,6 @@ document.addEventListener("DOMContentLoaded", function() {
             showToast("Form has been reset!");
 
         });
-
-
-        // Activity 7: Live Booking Summary
 
         let matchSelect = document.getElementById("bookingMatch");
         let standSelect = document.getElementById("type");
