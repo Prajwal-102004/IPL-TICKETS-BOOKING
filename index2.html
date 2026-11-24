@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IPL Cricket Ticket Reservation</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">🏏 IPL ARENA</div>
+
+        <button id="menuBtn" class="menu-btn" type="button">
+            ☰
+        </button>
+
+        <nav id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#matches">Matches</a>
+            <a href="#rules">Guidelines</a>
+            <a href="booking.html#bookingHeading">Book Tickets</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <h1>IPL 2026 CRICKET ARENA</h1>
+
+        <h3>Book Your Match Tickets Online</h3>
+
+        <a href="booking.html#bookingHeading" class="book-link">
+            Book Your Tickets
+        </a>
+
+    </section>
+
+
+    <!-- Home Section -->
+    <section>
+
+        <h2>Welcome to IPL 2026</h2>
+
+        <p>
+            Welcome to IPL 2026! Select your favourite team
+            and enjoy the excitement of live cricket matches.
+            Book your tickets and experience the thrill of cricket.
+        </p>
+
+    </section>
+
+
+    <!-- Match Schedule Section -->
+    <section id="matches">
+
+        <h2>IPL Match Schedule</h2>
+
+        <!-- Filter and View Controls -->
+        <div class="filter-controls">
+
+            <label for="teamFilter">Filter by Team:</label>
+
+            <select id="teamFilter">
+
+                <option value="all">All Teams</option>
+                <option value="RCB">RCB</option>
+                <option value="CSK">CSK</option>
+                <option value="MI">MI</option>
+                <option value="KKR">KKR</option>
+                <option value="SRH">SRH</option>
+                <option value="DC">DC</option>
+                <option value="RR">RR</option>
+                <option value="PBKS">PBKS</option>
+
+            </select>
+
+            <button id="gridBtn" type="button">
+                Grid View
+            </button>
+
+            <button id="listBtn" type="button">
+                List View
+            </button>
+
+        </div>
+
+
+        <!-- Match Cards -->
+        <div id="matchContainer" class="match-grid">
+
+            <div class="match-card" data-teams="RCB CSK">
+
+                <h3>RCB vs CSK</h3>
+
+                <p>Date: May 10, 2026</p>
+                <p>Time: 7:30 PM</p>
+                <p>Stadium: Bengaluru</p>
+
+            </div>
+
+
+            <div class="match-card" data-teams="MI KKR">
+
+                <h3>MI vs KKR</h3>
+
+                <p>Date: May 12, 2026</p>
+                <p>Time: 7:30 PM</p>
+                <p>Stadium: Mumbai</p>
+
+            </div>
+
+
+            <div class="match-card" data-teams="SRH DC">
+
+                <h3>SRH vs DC</h3>
+
+                <p>Date: May 14, 2026</p>
+                <p>Time: 7:30 PM</p>
+                <p>Stadium: Hyderabad</p>
+
+            </div>
+
+
+            <div class="match-card" data-teams="RR PBKS">
+
+                <h3>RR vs PBKS</h3>
+
+                <p>Date: May 16, 2026</p>
+                <p>Time: 3:30 PM</p>
+                <p>Stadium: Jaipur</p>
+
+            </div>
+
+
+            <div class="match-card" data-teams="CSK MI">
+
+                <h3>CSK vs MI</h3>
+
+                <p>Date: May 18, 2026</p>
+                <p>Time: 7:30 PM</p>
+                <p>Stadium: Chennai</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Ticket Reservation Section -->
+    <section id="booking">
+
+        <h2>Ticket Reservation Form</h2>
+
+        <form id="bookingForm">
+
+            <label for="username">Enter Your Name:</label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your name"
+                required
+            >
+
+            <br><br>
+
+
+            <label for="mobile">Enter Mobile Number:</label>
+
+            <input
+                type="tel"
+                id="mobile"
+                placeholder="Enter 10 digit number"
+                pattern="[0-9]{10}"
+                required
+            >
+
+            <br><br>
+
+
+            <label for="bookingMatch">Choose Match:</label>
+
+            <select id="bookingMatch" required>
+
+                <option value="">Choose Match</option>
+                <option>RCB vs CSK</option>
+                <option>MI vs KKR</option>
+                <option>SRH vs DC</option>
+                <option>RR vs PBKS</option>
+                <option>CSK vs MI</option>
+
+            </select>
+
+            <br><br>
+
+
+            <label for="count">Ticket Quantity:</label>
+
+            <input
+                type="number"
+                id="count"
+                min="1"
+                max="5"
+                placeholder="Enter quantity"
+                required
+            >
+
+            <br><br>
+
+
+            <label for="type">Ticket Category:</label>
+
+            <select id="type">
+
+                <option value="1000">Regular - ₹1000</option>
+                <option value="2000">Premium - ₹2000</option>
+                <option value="3500">VIP - ₹3500</option>
+
+            </select>
+
+            <br><br>
+
+
+            <button type="submit">
+                Confirm Booking
+            </button>
+
+            <button type="reset">
+                Reset
+            </button>
+
+        </form>
+
+        <p id="confirmation"></p>
+
+    </section>
+
+
+    <!-- Stadium Guidelines -->
+    <section id="rules">
+
+        <h2>Stadium Guidelines</h2>
+
+        <div class="rules-grid">
+
+            <div class="rule-card">
+
+                <h3>🎟️ Valid Ticket</h3>
+
+                <p>Bring your valid match ticket.</p>
+
+            </div>
+
+
+            <div class="rule-card">
+
+                <h3>🪪 Identity Card</h3>
+
+                <p>Carry a valid identity card.</p>
+
+            </div>
+
+
+            <div class="rule-card">
+
+                <h3>⏰ Arrive Early</h3>
+
+                <p>Reach the stadium before match time.</p>
+
+            </div>
+
+
+            <div class="rule-card">
+
+                <h3>🚫 Prohibited Items</h3>
+
+                <p>Do not carry prohibited objects.</p>
+
+            </div>
+
+
+            <div class="rule-card">
+
+                <h3>🛡️ Security</h3>
+
+                <p>Follow stadium security instructions.</p>
+
+            </div>
+
+
+            <div class="rule-card">
+
+                <h3>🤝 Respect</h3>
+
+                <p>Respect other spectators.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <center>
+
+            <h3>Thank You for Choosing IPL Arena!</h3>
+
+            <p>© 2026 IPL Ticket Reservation System</p>
+
+        </center>
+
+    </footer>
+
+
+</body>
+</html>

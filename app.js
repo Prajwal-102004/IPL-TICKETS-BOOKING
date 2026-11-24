@@ -1,4 +1,4 @@
-    let toastTimer;
+let toastTimer;
 
 function showToast(message) {
 
@@ -22,10 +22,84 @@ function showToast(message) {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
 
-    // View Match Button
+    let menuBtn = document.getElementById("menuBtn");
+    let navLinks = document.getElementById("navLinks");
+
+    if (menuBtn && navLinks) {
+
+        menuBtn.addEventListener("click", function() {
+
+            navLinks.classList.toggle("active");
+
+            showToast("Navigation menu toggled!");
+
+        });
+
+    }
+
+
+    // Activity 8: Team Filter
+
+    let teamFilter = document.getElementById("teamFilter");
+    let matchCards = document.querySelectorAll(".match-card");
+
+    if (teamFilter) {
+
+        teamFilter.addEventListener("change", function() {
+
+            let selectedTeam = teamFilter.value;
+
+            matchCards.forEach(function(card) {
+
+                let teams = card.getAttribute("data-teams");
+
+                if (selectedTeam === "all" ||
+                    teams.split(" ").includes(selectedTeam)) {
+
+                    card.style.display = "";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            showToast("Match filter updated!");
+
+        });
+
+    }
+
+    let matchContainer = document.getElementById("matchContainer");
+
+    let gridBtn = document.getElementById("gridBtn");
+    let listBtn = document.getElementById("listBtn");
+
+    if (matchContainer && gridBtn && listBtn) {
+
+        gridBtn.addEventListener("click", function() {
+
+            matchContainer.classList.remove("match-list");
+            matchContainer.classList.add("match-grid");
+
+            showToast("Grid view selected!");
+
+        });
+
+        listBtn.addEventListener("click", function() {
+
+            matchContainer.classList.remove("match-grid");
+            matchContainer.classList.add("match-list");
+
+            showToast("List view selected!");
+
+        });
+
+    }
 
     let viewButton = document.getElementById("viewMatchBtn");
 
@@ -35,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let match = document.getElementById("match").value;
 
-            if (match == "") {
+            if (match === "") {
                 showToast("Please select a match!");
             } else {
                 document.getElementById("result").innerHTML =
@@ -45,24 +119,24 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
         });
+
     }
 
-
-    if (window.location.hash == "#bookingHeading") {
+    if (window.location.hash === "#bookingHeading") {
 
         let heading = document.getElementById("bookingHeading");
 
         if (heading) {
+
             heading.scrollIntoView({
                 behavior: "smooth"
             });
 
             showToast("Welcome to IPL Ticket Booking!");
+
         }
+
     }
-
-
-
 
     let bookingForm = document.getElementById("bookingForm");
 
@@ -73,7 +147,8 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault();
 
             let name = document.getElementById("username").value;
-            let email = document.getElementById("email").value;
+            let emailElement = document.getElementById("email");
+            let email = emailElement ? emailElement.value : "";
             let mobile = document.getElementById("mobile").value;
             let match = document.getElementById("bookingMatch").value;
             let count = Number(document.getElementById("count").value);
@@ -84,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("confirmation").innerHTML =
                 "<h3>Booking Successful!</h3>" +
                 "Name: " + name + "<br>" +
-                "Email: " + email + "<br>" +
+                (email ? "Email: " + email + "<br>" : "") +
                 "Mobile: " + mobile + "<br>" +
                 "Match: " + match + "<br>" +
                 "Tickets: " + count + "<br>" +
@@ -94,10 +169,24 @@ document.addEventListener("DOMContentLoaded", function() {
             showToast("Booking submitted successfully!");
 
         });
-            bookingForm.addEventListener("reset", function() {
-            document.getElementById("confirmation").innerHTML = "";
+
+
+
+        bookingForm.addEventListener("reset", function() {
+
+            let confirmation = document.getElementById("confirmation");
+
+            if (confirmation) {
+                confirmation.innerHTML = "";
+            }
+
             showToast("Form has been reset!");
+
         });
+
+
+        // Activity 7: Live Booking Summary
+
         let matchSelect = document.getElementById("bookingMatch");
         let standSelect = document.getElementById("type");
         let quantityInput = document.getElementById("count");
@@ -111,27 +200,42 @@ document.addEventListener("DOMContentLoaded", function() {
             let price = Number(stand);
             let total = price * quantity;
 
-            let standName = standSelect.options[standSelect.selectedIndex].text;
+            let standName =
+                standSelect.options[standSelect.selectedIndex].text;
 
-            document.getElementById("summaryMatch").innerText =
-                match || "Not selected";
+            let summaryMatch = document.getElementById("summaryMatch");
+            let summaryStand = document.getElementById("summaryStand");
+            let summaryQuantity = document.getElementById("summaryQuantity");
+            let summaryTotal = document.getElementById("summaryTotal");
 
-            document.getElementById("summaryStand").innerText =
-                stand ? standName : "Not selected";
+            if (summaryMatch) {
+                summaryMatch.innerText = match || "Not selected";
+            }
 
-            document.getElementById("summaryQuantity").innerText =
-                quantity || 0;
+            if (summaryStand) {
+                summaryStand.innerText = stand ? standName : "Not selected";
+            }
 
-            document.getElementById("summaryTotal").innerText =
-                total || 0;
+            if (summaryQuantity) {
+                summaryQuantity.innerText = quantity || 0;
+            }
+
+            if (summaryTotal) {
+                summaryTotal.innerText = total || 0;
+            }
 
             showToast("Booking summary updated!");
+
         }
 
-        matchSelect.addEventListener("change", updateBookingSummary);
-        standSelect.addEventListener("change", updateBookingSummary);
-        quantityInput.addEventListener("change", updateBookingSummary);
 
+        if (matchSelect && standSelect && quantityInput) {
+
+            matchSelect.addEventListener("change", updateBookingSummary);
+            standSelect.addEventListener("change", updateBookingSummary);
+            quantityInput.addEventListener("change", updateBookingSummary);
+
+        }
 
     }
 
